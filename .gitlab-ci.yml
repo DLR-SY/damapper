@@ -6,6 +6,10 @@
 .default: &default
   - if: ( $CI_MIRROR_TARGET != null || $CI_MIRROR_TARGET =~ /^./ )
     when: never
+  - if: '$CI_SERVER_HOST == "gitlab.dlr.de"'
+.public: &public
+  - if: '$CI_SERVER_HOST != "gitlab.dlr.de"'
+    when: always
 
 ## All GitLab CI/CD templates
 # Contains all reusable code snippets.
@@ -19,7 +23,9 @@ include:
   - local: '.gitlab/ci*/project-main-template.yml'
     rules: 
       - *default
-      - if: '$CI_SERVER_HOST == "gitlab.dlr.de"'
-  - local: ['.gitlab/**/project-local-template.yml','.gitlab/**/project-public-template.yml']
+  - local: '.gitlab/**/project-local-template.yml'
     rules:
-      - if: '$CI_SERVER_HOST != "gitlab.dlr.de"'
+      - *public
+  - local: '.gitlab/**/project-public-template.yml'
+    rules:
+      - *public
