@@ -1,0 +1,87 @@
+% Document class
+\documentclass[elements=False,frutiger=False]{dlrbook}
+%\PassOptionsToPackage[institute=FA-VPT, site=STD]{dlrinstitutes} % Loads instute and site information.
+%\dlrsite{STD}                                                    % Loads a different site than the default.
+%                                                                 % See also the title and author definitions below.
+%\usepackage{dlrlayout}
+
+% Load packages for encoding and languages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman,english]{babel}
+\usepackage{dlrsecondpage}
+
+% Subfigures
+\usepackage{caption}
+\usepackage{subfig}
+
+% Load package for tables
+\usepackage{booktabs, array}
+\newcolumntype{C}[1]{>{\centering}m{#1}}
+
+% Load hyperref
+\usepackage[ pdfauthor  = {Marc Garbade, Christoph Dienel},
+						 pdftitle   = {DaMapper - User Guide},
+						 colorlinks = true, 
+						 linkcolor  = black,  
+						 citecolor  = black,
+						 urlcolor   = blue,
+						 pdfstartview = {Fit}
+					]{hyperref}
+					
+% Change the page layout
+%\KOMAoptions{DIV=9, headinclude=false, footinclude=false, headheight=2.2cm} %bcor=10mm
+%\KOMAoptions{headinclude=false, footinclude=false, headheight=2.2cm} %bcor=10mm
+%\recalctypearea
+%\areaset[0cm]{}
+					
+% Define title and author
+\subject     {DaMapper \\ \bigksip A composite damage \\ segmentation tool}
+\title       {User Guide}
+\subtitle    {Documentation, Application \& Preliminary Integrations}
+\author      {Marc Garbade, Christoph Dienel}
+\publishers {Institute for Composite Structures \& Adaptive Systems \\
+             Department of Structural Mechanics }
+\dlrinstitute{FA-STM}
+\dlrsite     {OP} % You may load a different site than the default...
+\telnumber   {3666}
+\faxnumber   {2232}
+\email       {marc.garbade@dlr.de}
+%\reportno    {undefined}
+\date        {\today}
+%\addversion  {1.1}{27.08.2012}{Changed logos}{kloe\_ad}
+%\addversion  {1.2}{03.02.2018}{Replaced obsolete package scrpage2}{raed\_ma}
+
+\usepackage[Bjarne]{fncychap}
+
+\usepackage{subfig}
+% Always sans-serif...
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% Begin document
+\begin{document}
+
+%\pagenumbering{roman}
+\titlematter
+\settitle{type=plain}
+\maketitle
+\secondpage
+
+\frontmatter
+\tableofcontents
+
+\mainmatter
+
+%%%%%%%%%%%%%
+% CHAPTERS  %
+%%%%%%%%%%%%%
+\include{chapters/introduction}
+
+%%%%%%%%%%%%%
+%% APPENDIX %
+%%%%%%%%%%%%%
+\appendix
+
+\end{document}
+% eof

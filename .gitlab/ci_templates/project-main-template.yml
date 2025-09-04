@@ -1,0 +1,26 @@
+## All GitLab strategy templates
+# Contains all reusable code snippets.
+include:
+  - project: 'fa_sw/stmlab/PyXMake'
+    file: '/.gitlab/ci_templates/project-config-template.yml'
+
+## All stages
+# Jobs within a stage can be executed in parallel
+stages:
+  - audit
+
+## GitLab package & PyPI releases
+# Publish the current latest wheel (only once!)
+documentation:
+  stage: audit
+  variables:
+    # Some modifiable job variables.
+    GIT_BRANCH: dam_docs
+    GIT_OVERLEAF_PROJECT_ID: "625e89e880ab0700a326be15" # Overleaf Project ID
+  inherit:
+    variables: true
+  trigger:
+    strategy: depend
+    include:
+    - project: 'fa_sw/stmlab/PyXMake'
+      file: '/.gitlab/ci_templates/overleaf-template.yml'

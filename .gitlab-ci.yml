@@ -1,0 +1,22 @@
+## All rules templates
+# Keywords starting with a '.' are ignored and can thus be reused later
+.mirror: &mirror
+  - if: ( $CI_MIRROR_TARGET != null || $CI_MIRROR_TARGET =~ /^./ )
+    when: always
+.default: &default
+  - if: ( $CI_MIRROR_TARGET != null || $CI_MIRROR_TARGET =~ /^./ )
+    when: never
+
+## All GitLab CI/CD templates
+# Contains all reusable code snippets.
+include:
+  ## External predefined pipeline templates to reduce code duplication
+  # Push mirror to public repository w/o tags
+  - project: 'fa_sw/stmlab/PyXMake'
+    file: '/.gitlab/ci_templates/project-mirror-template.yml'
+    rules: 
+      - *mirror
+  - local: '.gitlab/ci*/project-main-template.yml'
+    rules: 
+      - *default
+      - if: '$CI_COMMIT_BRANCH'
