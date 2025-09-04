@@ -1,0 +1,4 @@
+## User-defined environment variables for all jobs
+# Adding submodule support for public repositories with non-public branches
+include: 
+  remote: 'https://gitlab.com/dlr-sy/pyxmake/-/raw/master/.gitlab/ci_templates/project-public-template.yml'
