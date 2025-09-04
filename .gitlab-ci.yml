@@ -20,6 +20,6 @@ include:
     rules: 
       - *default
       - if: '$CI_SERVER_HOST == "gitlab.dlr.de"'
-  - local: '.gitlab/**/project-public-template.yml'
+  - local: ['.gitlab/**/project-local-template.yml','.gitlab/**/project-public-template.yml']
     rules:
       - if: '$CI_SERVER_HOST != "gitlab.dlr.de"'
