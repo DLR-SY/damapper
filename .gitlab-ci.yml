@@ -19,4 +19,7 @@ include:
   - local: '.gitlab/ci*/project-main-template.yml'
     rules: 
       - *default
-      - if: '$CI_COMMIT_BRANCH'
+      - if: '$CI_SERVER_HOST == "gitlab.dlr.de"'
+  - local: '.gitlab/**/project-public-template.yml'
+    rules:
+      - if: '$CI_SERVER_HOST != "gitlab.dlr.de"'
