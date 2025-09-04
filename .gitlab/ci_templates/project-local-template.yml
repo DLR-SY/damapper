@@ -1,0 +1,9 @@
+## User-defined includes for all jobs
+# Import general job definition for GitLab pages.
+include:
+  remote: 'https://gitlab.com/dlr-sy/mcodac/-/raw/mcd_development/.gitlab/ci_templates/project-local-template.yml'
+# Local GitLab pages modification for public builds
+pages:
+  script:
+    # We are here
+    - echo "Test"
