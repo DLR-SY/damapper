@@ -47,3 +47,7 @@ test:
         job-name: "pages"
         image: "stmlab/conda:debian"
         token: "$GIT_READ_ACCESS_TOKEN"
+  artifacts:
+    public: true
+    expire_in: 1 day
+    paths: ["*.zip"]
