@@ -37,7 +37,7 @@ pages:
   rules: [!reference [.default_rules, build]]
   script:
     - ls -a 
-    - unzip '*.zip'
+    - unzip artifacts.zip
     - ls -a
     # We are here
     - echo "Test"
