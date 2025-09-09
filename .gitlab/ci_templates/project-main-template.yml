@@ -50,13 +50,13 @@ test:
 
 run-tests:
   stage: .post
-  needs: [test]
   script:
     - echo "check dev project artifacts"
     - ls -a
     - echo "running tests"
     - ...
   needs:
+    - test
     - project: stmlab/plugins/damapper
       job: download
       ref: $CI_COMMIT_REF_NAME
