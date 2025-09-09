@@ -18,6 +18,9 @@ deploy:
 # Fetch documentation from upstream repository
 fetch:
   rules: [!reference [.default_rules, build]]
+  variables:
+    SY_DEPLOY_TOKEN: $SY_DEPLOY_TOKEN
+    SY_UPSTREAM_PROJECT_ID: $SY_UPSTREAM_PROJECT_ID
   trigger:
     strategy: depend
     forward:
@@ -37,6 +40,7 @@ fetch:
 # Local GitLab pages modification for public builds
 pages:
   needs: [fetch]
+  rules: [!reference [.default_rules, build]]
   script:
     - ls -a 
     # We are here
