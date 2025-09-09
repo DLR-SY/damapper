@@ -2,7 +2,7 @@
 # Adding submodule support for public repositories with non-public branches
 include:
   - remote: 'https://gitlab.com/dlr-sy/pyxmake/-/raw/master/.gitlab/ci_templates/project-public-template.yml'
-  - project: 'DLR-SY/PyXMake'
+  - project: 'dlr-sy/pyxmake'
     file: '/templates/project-artifacts/template.yml'
     inputs:
       base-url: "https://gitlab.dlr.de"
