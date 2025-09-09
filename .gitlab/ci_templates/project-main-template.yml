@@ -7,6 +7,7 @@ include:
 ## All stages
 # Jobs within a stage can be executed in parallel
 stages:
+  - compile
   - audit
 
 ## GitLab package & PyPI releases
@@ -24,3 +25,20 @@ documentation:
     include:
     - project: 'fa_sw/stmlab/PyXMake'
       file: '/.gitlab/ci_templates/overleaf-template.yml'
+
+## GitLab compilation job
+# Build package for linux
+test:
+  stage: compile
+  extends: []
+  rules: [when: always]
+  trigger:
+    strategy: depend
+    forward:
+      pipeline_variables: true
+    include:
+    - component: $CI_SERVER_FQDN/fa_sw/stmlab/PyXMake/project-artifacts@master
+      inputs:
+        job-name:: "pages"
+        ref-name: "dam_docs"
+        stage-name: "deploy"
