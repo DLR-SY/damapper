@@ -49,6 +49,7 @@ test:
         token: "$GIT_READ_ACCESS_TOKEN"
 
 run-tests:
+  stage: .post
   script:
     - echo "check dev project artifacts"
     - ls -a
