@@ -31,7 +31,7 @@ fetch:
 
 # Local GitLab pages modification for public builds
 pages:
-  needs: [documentation]
+  needs: [fetch]
   script:
     - ls -a 
     # We are here
