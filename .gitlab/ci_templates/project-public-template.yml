@@ -1,7 +1,17 @@
 ## User-defined environment variables for all jobs
 # Adding submodule support for public repositories with non-public branches
 include: 
-  remote: 'https://gitlab.com/dlr-sy/pyxmake/-/raw/master/.gitlab/ci_templates/project-public-template.yml'
+  - remote: 'https://gitlab.com/dlr-sy/pyxmake/-/raw/master/.gitlab/ci_templates/project-public-template.yml'
+  - project: 'DLR-SY/PyXMake'
+    file: '/templates/project-artifacts/template.yml'
+    inputs:
+      base-url: "https://gitlab.dlr.de"
+      ref-name: "dam_docs"
+      stage-name: "deploy"
+      job-name: "pages"
+      image: "stmlab/conda:debian"
+      token: "$SY_DEPLOY_TOKEN"
+      project-id: "$SY_UPSTREAM_PROJECT_ID"
 
 ## All job template updates
 # Add or modify imported jobs to include local changes
@@ -16,30 +26,27 @@ deploy:
 
 ## GitLab documentation fetch job
 # Fetch documentation from upstream repository
-fetch:
+download:
   rules: [!reference [.default_rules, build]]
-  variables:
-    SY_DEPLOY_TOKEN: $SY_DEPLOY_TOKEN
-    SY_UPSTREAM_PROJECT_ID: $SY_UPSTREAM_PROJECT_ID
-  trigger:
-    strategy: depend
-    forward:
-      pipeline_variables: true
-    include:
-    - project: 'DLR-SY/PyXMake'
-      file: '/templates/project-artifacts/template.yml'
-      inputs:
-        base-url: "https://gitlab.dlr.de"
-        ref-name: "dam_docs"
-        stage-name: "deploy"
-        job-name: "pages"
-        image: "stmlab/conda:debian"
-        token: "$SY_DEPLOY_TOKEN"
-        project-id: "$SY_UPSTREAM_PROJECT_ID"
+#  trigger:
+#    strategy: depend
+#    forward:
+#      pipeline_variables: true
+#    include:
+#    - project: 'DLR-SY/PyXMake'
+#      file: '/templates/project-artifacts/template.yml'
+#      inputs:
+#        base-url: "https://gitlab.dlr.de"
+#        ref-name: "dam_docs"
+#        stage-name: "deploy"
+#        job-name: "pages"
+#        image: "stmlab/conda:debian"
+#        token: "$SY_DEPLOY_TOKEN"
+#        project-id: "$SY_UPSTREAM_PROJECT_ID"
 
 # Local GitLab pages modification for public builds
 pages:
-  needs: [fetch]
+  needs: [download]
   rules: [!reference [.default_rules, build]]
   script:
     - ls -a 
