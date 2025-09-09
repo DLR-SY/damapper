@@ -2,3 +2,37 @@
 # Adding submodule support for public repositories with non-public branches
 include: 
   remote: 'https://gitlab.com/dlr-sy/pyxmake/-/raw/master/.gitlab/ci_templates/project-public-template.yml'
+
+## All job template updates
+# Add or modify imported jobs to include local changes
+build:
+  rules: [when: never]
+  allow_failure: true
+
+## GitLab documentation fetch job
+# Fetch documentation from upstream repository
+fetch:
+  rules: [!reference [.default_rules, build]]
+  trigger:
+    strategy: depend
+    forward:
+      pipeline_variables: true
+    include:
+    - project: 'DLR-SY/PyXMake'
+      file: '/templates/project-artifacts/template.yml'
+      inputs:
+        base-url: "https://gitlab.dlr.de"
+        ref-name: "dam_docs"
+        stage-name: "deploy"
+        job-name: "pages"
+        image: "stmlab/conda:debian"
+        token: "$SY_DEPLOY_TOKEN"
+        project-id: "$SY_UPSTREAM_PROJECT_ID"
+
+# Local GitLab pages modification for public builds
+pages:
+  needs: [fetch]
+  script:
+    - ls -a 
+    # We are here
+    - echo "Test"
