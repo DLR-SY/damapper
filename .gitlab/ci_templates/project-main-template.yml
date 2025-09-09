@@ -41,23 +41,7 @@ test:
       file: '/templates/project-artifacts/template.yml'
       inputs:
         base-url: "https://gitlab.dlr.de"
-        project-id: "$SY_UPSTREAM_PROJECT_ID"
         ref-name: "dam_docs"
         stage-name: "deploy"
         job-name: "pages"
         image: "stmlab/conda:debian"
-        token: "$GIT_READ_ACCESS_TOKEN"
-
-run-tests:
-  stage: .post
-  script:
-    - echo "check dev project artifacts"
-    - ls -a
-    - echo "running tests"
-    - ...
-  needs:
-    - test
-    - project: stmlab/plugins/damapper
-      job: download
-      ref: $CI_COMMIT_REF_NAME
-      artifacts: true
