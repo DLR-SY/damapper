@@ -9,6 +9,11 @@ build:
   rules: [when: never]
   allow_failure: true
 
+# Add or modify imported jobs to include local changes
+deploy:
+  rules: [when: never]
+  allow_failure: true
+
 ## GitLab documentation fetch job
 # Fetch documentation from upstream repository
 fetch:
