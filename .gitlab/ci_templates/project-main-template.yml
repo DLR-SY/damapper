@@ -25,23 +25,3 @@ documentation:
     include:
     - project: 'fa_sw/stmlab/PyXMake'
       file: '/.gitlab/ci_templates/overleaf-template.yml'
-
-## GitLab compilation job
-# Build package for linux
-test:
-  stage: compile
-  extends: []
-  rules: [when: always]
-  trigger:
-    strategy: depend
-    forward:
-      pipeline_variables: true
-    include:
-    - project: 'fa_sw/stmlab/PyXMake'
-      file: '/templates/project-artifacts/template.yml'
-      inputs:
-        base-url: "https://gitlab.dlr.de"
-        ref-name: "dam_docs"
-        stage-name: "deploy"
-        job-name: "pages"
-        image: "stmlab/conda:debian"
