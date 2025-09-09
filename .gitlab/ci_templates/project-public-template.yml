@@ -1,7 +1,6 @@
 ## User-defined environment variables for all jobs
 # Adding submodule support for public repositories with non-public branches
 include:
-  - remote: 'https://gitlab.com/dlr-sy/pyxmake/-/raw/master/templates/project-pages/template.yml'
   - remote: 'https://gitlab.com/dlr-sy/pyxmake/-/raw/master/.gitlab/ci_templates/project-public-template.yml'
   - project: 'DLR-SY/PyXMake'
     file: '/templates/project-artifacts/template.yml'
@@ -36,15 +35,7 @@ download:
 ## GitLab Pages
 # Publish static documentation with GitLab Pages
 pages:
-  tags: [nimbus]
   needs: [download]
   rules: [!reference [.default_rules, build]]
-  image: python:latest
-  cache: null
-  before_script:
-    - ls -a 
-    - unzip artifacts.zip
-    - ls -a
   script:
-    # We are here
-    - echo "Test"
+    - unzip artifacts.zip
