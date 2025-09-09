@@ -41,7 +41,7 @@ test:
       file: '/templates/project-artifacts/template.yml'
       inputs:
         base-url: "https://gitlab.dlr.de"
-        project-id: "14404"
+        project-id: "$SY_UPSTREAM_PROJECT_ID"
         ref-name: "dam_docs"
         stage-name: "deploy"
         job-name: "pages"
