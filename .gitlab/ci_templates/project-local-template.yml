@@ -3,6 +3,10 @@
 include:
   remote: 'https://gitlab.com/dlr-sy/mcodac/-/raw/mcd_development/.gitlab/ci_templates/project-local-template.yml'
 
+## All job template updates
+# Add or modify imported jobs to include local changes
+build: null
+
 ## GitLab documentation job
 # Fetch documentation from upstream repository
 documentation:
@@ -28,5 +32,6 @@ documentation:
 pages:
   needs: [documentation]
   script:
+    - ls -a 
     # We are here
     - echo "Test"
