@@ -1,8 +1,3 @@
-## User-defined includes for all jobs
-# Import general job definition for GitLab pages.
-include:
-  remote: 'https://gitlab.com/dlr-sy/pyxmake/-/raw/master/.gitlab/ci_templates/project-public-template.yml'
-
 ## All job template updates
 # Add or modify imported jobs to include local changes
 build:
