@@ -30,21 +30,6 @@ deploy:
 download:
   stage: null
   rules: [!reference [.default_rules, build]]
-#  trigger:
-#    strategy: depend
-#    forward:
-#      pipeline_variables: true
-#    include:
-#    - project: 'DLR-SY/PyXMake'
-#      file: '/templates/project-artifacts/template.yml'
-#      inputs:
-#        base-url: "https://gitlab.dlr.de"
-#        ref-name: "dam_docs"
-#        stage-name: "deploy"
-#        job-name: "pages"
-#        image: "stmlab/conda:debian"
-#        token: "$SY_DEPLOY_TOKEN"
-#        project-id: "$SY_UPSTREAM_PROJECT_ID"
 
 # Local GitLab pages modification for public builds
 pages:
@@ -52,5 +37,7 @@ pages:
   rules: [!reference [.default_rules, build]]
   script:
     - ls -a 
+    - unzip '*.zip'
+    - ls -a
     # We are here
     - echo "Test"
