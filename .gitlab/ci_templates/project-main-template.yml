@@ -45,5 +45,5 @@ test:
         ref-name: "dam_docs"
         stage-name: "deploy"
         job-name: "pages"
-        image: "stmlab/pypa:manylinux_2_28"
+        image: "stmlab/conda:debian"
         token: "$GIT_READ_ACCESS_TOKEN"
