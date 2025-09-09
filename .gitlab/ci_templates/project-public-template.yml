@@ -27,6 +27,7 @@ deploy:
 ## GitLab documentation fetch job
 # Fetch documentation from upstream repository
 download:
+  stage: null
   rules: [!reference [.default_rules, build]]
 #  trigger:
 #    strategy: depend
