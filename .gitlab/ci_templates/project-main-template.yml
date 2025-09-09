@@ -40,6 +40,10 @@ test:
     - project: 'fa_sw/stmlab/PyXMake'
       file: '/templates/project-artifacts/template.yml'
       inputs:
-        job-name: "pages"
+        base-url: "https://gitlab.dlr.de"
+        project-id: "14404"
         ref-name: "dam_docs"
         stage-name: "deploy"
+        job-name: "pages"
+        image: "stmlab/pypa:manylinux_2_28"
+        token: "$GIT_READ_ACCESS_TOKEN"
