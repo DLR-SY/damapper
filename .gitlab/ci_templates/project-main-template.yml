@@ -50,6 +50,7 @@ test:
 
 run-tests:
   stage: .post
+  needs: [test]
   script:
     - echo "check dev project artifacts"
     - ls -a
