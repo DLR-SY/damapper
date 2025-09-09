@@ -37,7 +37,8 @@ test:
     forward:
       pipeline_variables: true
     include:
-    - remote: 'https://gitlab.com/dlr-sy/pyxmake/-/raw/master/templates/project-artifacts/template.yml'
+    - project: 'fa_sw/stmlab/PyXMake'
+      file: '/templates/project-artifacts/template.yml'
       inputs:
         job-name: "pages"
         ref-name: "dam_docs"
