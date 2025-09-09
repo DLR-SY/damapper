@@ -39,6 +39,6 @@ test:
     include:
     - component: $CI_SERVER_FQDN/fa_sw/stmlab/PyXMake/project-artifacts@master
       inputs:
-        job-name:: "pages"
+        job-name: "pages"
         ref-name: "dam_docs"
         stage-name: "deploy"
